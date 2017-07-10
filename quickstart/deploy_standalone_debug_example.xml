@@ -82,7 +82,7 @@ National Library.
     </common>
     <monitor>
       <jmxUsername>monitorRole</jmxUsername>
-      <jmxPassword>test</jmxPassword>
+      <jmxPassword>archiver</jmxPassword>
     </monitor>
     <archive>
       <bitpreservation>
@@ -96,8 +96,8 @@ National Library.
   </settings>
 
   <thisPhysicalLocation name="NATIONAL_LIBRARY">
-    <deployInstallDir>/home/test</deployInstallDir>
-    <deployMachineUserName>test</deployMachineUserName>
+    <deployInstallDir>/home/archiver</deployInstallDir>
+    <deployMachineUserName>archiver</deployMachineUserName>
     <settings>
       <common>
         <useReplicaId>A</useReplicaId>
@@ -351,8 +351,8 @@ National Library.
                 <jmxPort>18195</jmxPort>
                 <jmxUsername>controlRole</jmxUsername>
                 <jmxPassword>R_D</jmxPassword>
-                <bundle>/home/test/NetarchiveSuite-heritrix3-bundler-5.0-SNAPSHOT.zip</bundle>
-                <certificate>/home/test/h3server.jks</certificate>
+                <bundle>/home/archiver/NetarchiveSuite-heritrix3-bundler-5.0-SNAPSHOT.zip</bundle>
+                <certificate>/home/archiver/h3server.jks</certificate>
               </heritrix>
               <serverDir>harvester3_low</serverDir>
             </harvesting>
@@ -382,8 +382,8 @@ National Library.
                 <jmxPort>18197</jmxPort>
                 <jmxUsername>controlRole</jmxUsername>
                 <jmxPassword>R_D</jmxPassword>
-                <bundle>/home/test/NetarchiveSuite-heritrix3-bundler-5.0-SNAPSHOT.zip</bundle>
-                <certificate>/home/test/h3server.jks</certificate>
+                <bundle>/home/archiver/NetarchiveSuite-heritrix3-bundler-5.0-SNAPSHOT.zip</bundle>
+                <certificate>/home/archiver/h3server.jks</certificate>
               </heritrix>
               <serverDir>harvester3_high</serverDir>
             </harvesting>

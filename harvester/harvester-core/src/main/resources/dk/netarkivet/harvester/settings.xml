@@ -74,7 +74,7 @@ National Library.
                     <expectedAverageBytesPerObject>38000</expectedAverageBytesPerObject>
                     <maxDomainSize>5000</maxDomainSize>
                     <!-- Used by FixedDomainConfigurationCountJobGenerator and as an absolute limit in DefaultJobGenerator -->
-                    <fixedDomainCountSnapshot>10000</fixedDomainCountSnapshot>
+                    <fixedDomainCountSnapshot>2000</fixedDomainCountSnapshot>
                     <!-- Only used by FixedDomainConfigurationCountJobGenerator -->
                     <fixedDomainCountFocused>0</fixedDomainCountFocused>
                     <excludeDomainsWithZeroBudget>false</excludeDomainsWithZeroBudget>

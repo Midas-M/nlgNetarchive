@@ -82,6 +82,11 @@ National Library.
         </jmx>
         <webinterface> <!-- Settings for the web GUI -->
             <language>
+                <locale>gr</locale>
+                <name>Greek</name>
+            </language>
+            <!--
+            <language>
                 <locale>da</locale>
                 <name>Dansk</name>
             </language>
@@ -101,26 +106,37 @@ National Library.
                 <locale>fr</locale>
                 <name>Français</name>
             </language>
+            -->
+            <!--
             <siteSection>
                 <class>dk.netarkivet.harvester.webinterface.DefinitionsSiteSection</class>
                 <webapplication>webpages/HarvestDefinition.war</webapplication>
             </siteSection>
+            -->
+            <!--
             <siteSection>
                 <class>dk.netarkivet.harvester.webinterface.HistorySiteSection</class>
                 <webapplication>webpages/History.war</webapplication>
             </siteSection>
+            -->
+            <!--
             <siteSection>
                 <class>dk.netarkivet.harvester.webinterface.HarvestChannelSiteSection</class>
                 <webapplication>webpages/HarvestChannel.war</webapplication>
             </siteSection>
+            -->
+            <!--
             <siteSection>
                 <class>dk.netarkivet.archive.webinterface.BitPreservationSiteSection</class>
                 <webapplication>webpages/BitPreservation.war</webapplication>
             </siteSection>
+            -->
+            <!--
             <siteSection>
                 <class>dk.netarkivet.viewerproxy.webinterface.QASiteSection</class>
                 <webapplication>webpages/QA.war</webapplication>
             </siteSection>
+            -->
             <siteSection>
                 <class>dk.netarkivet.monitor.webinterface.StatusSiteSection</class>
                 <webapplication>webpages/Status.war</webapplication>

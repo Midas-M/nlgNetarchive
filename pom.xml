@@ -96,7 +96,6 @@
     <module>deploy</module>
     <module>harvester</module>
     <module>monitor</module>
-    <module>wayback</module>
     <module>integration-test</module>
   </modules>
 
