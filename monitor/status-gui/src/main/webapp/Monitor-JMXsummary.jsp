@@ -94,6 +94,30 @@ will not appear here.
 <h3 class="page_heading">
     <fmt:message key="pagetitle;monitor.summary"/>
 </h3>
+<div>
+    <h4 class="page_heading">
+        <fmt:message key="pagesubtitle;monitor.solr"/>
+    </h4>
+    <table id="solr_state_table">
+        <tr>
+            <th>
+                SOLR NODE
+            </th>
+            <th>
+                STATUS
+            </th>
+        </tr>
+        <tr>
+            <td>NODE A</td>
+            <td>UP</td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h4 class="page_heading">
+        <fmt:message key="pagesubtitle;monitor.netarch"/>
+
+    </h4>
 <%
     JMXSummaryUtils.StarredRequest starredRequest =
             new JMXSummaryUtils.StarredRequest(request);
@@ -110,7 +134,7 @@ will not appear here.
     <tr>
         <%
             if (JMXSummaryUtils.showColumn(starredRequest,
-                                           JMXSummaryUtils.JMXPhysLocationProperty)) {
+                    JMXSummaryUtils.JMXPhysLocationProperty)) {
         %>
         <th><fmt:message
                 key="tablefield;location"/> <%=JMXSummaryUtils.generateShowLink(
@@ -120,7 +144,7 @@ will not appear here.
         <%
             }
             if (JMXSummaryUtils.showColumn(starredRequest,
-                                           JMXSummaryUtils.JMXMachineNameProperty)) {
+                    JMXSummaryUtils.JMXMachineNameProperty)) {
         %>
         <th><fmt:message
                 key="tablefield;machine"/> <%=JMXSummaryUtils.generateShowLink(
@@ -130,7 +154,7 @@ will not appear here.
         <%
             }
             if (JMXSummaryUtils.showColumn(starredRequest,
-                                           JMXSummaryUtils.JMXApplicationNameProperty)) {
+                    JMXSummaryUtils.JMXApplicationNameProperty)) {
         %>
         <th><fmt:message
                 key="tablefield;applicationname"/> <%=JMXSummaryUtils.generateShowLink(
@@ -140,7 +164,7 @@ will not appear here.
         <%
             }
             if (JMXSummaryUtils.showColumn(starredRequest,
-                                           JMXSummaryUtils.JMXApplicationInstIdProperty)) {
+                    JMXSummaryUtils.JMXApplicationInstIdProperty)) {
         %>
         <th><fmt:message
                 key="tablefield;applicationinstanceid"/> <%=JMXSummaryUtils.generateShowLink(
@@ -150,7 +174,7 @@ will not appear here.
         <%
             }
             if (JMXSummaryUtils.showColumn(starredRequest,
-                                           JMXSummaryUtils.JMXHttpportProperty)) {
+                    JMXSummaryUtils.JMXHttpportProperty)) {
         %>
         <th><fmt:message
                 key="tablefield;httpport"/> <%=JMXSummaryUtils.generateShowLink(
@@ -158,9 +182,9 @@ will not appear here.
                 JMXSummaryUtils.JMXHttpportProperty, currentLocale)%>
         </th>
         <%
-        	}
-                    if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXHarvestChannelProperty)) {
+            }
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXHarvestChannelProperty)) {
         %>
         <th><fmt:message
                 key="tablefield;channel"/> <%=JMXSummaryUtils.generateShowLink(
@@ -168,9 +192,9 @@ will not appear here.
                 JMXSummaryUtils.JMXHarvestChannelProperty, currentLocale)%>
         </th>
         <%
-        	}
-                    if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXArchiveReplicaNameProperty)) {
+            }
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXArchiveReplicaNameProperty)) {
         %>
         <th><fmt:message
                 key="tablefield;replicaname"/> <%=JMXSummaryUtils.generateShowLink(
@@ -178,7 +202,7 @@ will not appear here.
                 JMXSummaryUtils.JMXArchiveReplicaNameProperty, currentLocale)%>
         </th>
         <%
-        	}
+            }
         %>
         <th><fmt:message
                 key="tablefield;index"/> <%=JMXSummaryUtils.generateShowAllLink(
@@ -187,8 +211,8 @@ will not appear here.
         </th>
         <th><fmt:message key="tablefield;logmessage"/></th>
         <%
-        	if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXRemoveApplication)) {
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXRemoveApplication)) {
         %>
         <th><fmt:message
                 key="tablefield;removeapplication"/> <%=JMXSummaryUtils.generateShowLink(
@@ -196,119 +220,119 @@ will not appear here.
                 JMXSummaryUtils.JMXRemoveApplication, currentLocale)%>
         </th>
         <%
-        	}
+            }
         %>
     </tr>
     <%
-    	for (StatusEntry entry : result) {
-                if (entry.getLogMessage(response.getLocale()).trim().length() > 0) {
+        for (StatusEntry entry : result) {
+            if (entry.getLogMessage(response.getLocale()).trim().length() > 0) {
     %>
     <tr>
         <%
-        	if (JMXSummaryUtils.showColumn(starredRequest,
-                                               JMXSummaryUtils.JMXPhysLocationProperty)) {
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXPhysLocationProperty)) {
         %>
         <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXPhysLocationProperty,
-                                            entry.getPhysicalLocation(),
-                                            HTMLUtils.escapeHtmlValues(
-                                                    entry.getPhysicalLocation()))%>
-        </td>
-        <%
-        	}
-                    if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXMachineNameProperty)) {
-        %>
-        <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXMachineNameProperty,
-                                            entry.getMachineName(),
-                                            HTMLUtils.escapeHtmlValues
-                                                    (DomainUtils.reduceHostname(
-                                                            entry.getMachineName())))%>
-        </td>
-        <%
-        	}
-                    if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXApplicationNameProperty)) {
-        %>
-        <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXApplicationNameProperty,
-                                            entry.getApplicationName(),
-                                            HTMLUtils.escapeHtmlValues
-                                                    (JMXSummaryUtils.reduceApplicationName(
-                                                            entry.getApplicationName())))%>
-        </td>
-        <%
-        	}
-                    if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXApplicationInstIdProperty)) {
-        %>
-        <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXApplicationInstIdProperty,
-                                            entry.getApplicationInstanceID(),
-                                            HTMLUtils.escapeHtmlValues(
-                                                    entry.getApplicationInstanceID()))%>
-        </td>
-        <%
-        	}
-                    if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXHttpportProperty)) {
-        %>
-        <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXHttpportProperty,
-                                            entry.getHTTPPort(),
-                                            HTMLUtils.escapeHtmlValues(
-                                                    entry.getHTTPPort()))%>
-        </td>
-        <%
-        	}
-                    if (JMXSummaryUtils.showColumn(starredRequest,
-                                                   JMXSummaryUtils.JMXHarvestChannelProperty)) {
-        %>
-        <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXHarvestChannelProperty,
-                                            entry.getHarvestPriority(),
-                                            HTMLUtils.escapeHtmlValues(
-                                                    entry.getHarvestPriority()))%>
+                JMXSummaryUtils.JMXPhysLocationProperty,
+                entry.getPhysicalLocation(),
+                HTMLUtils.escapeHtmlValues(
+                        entry.getPhysicalLocation()))%>
         </td>
         <%
             }
             if (JMXSummaryUtils.showColumn(starredRequest,
-                                           JMXSummaryUtils.JMXArchiveReplicaNameProperty)) {
+                    JMXSummaryUtils.JMXMachineNameProperty)) {
         %>
         <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXArchiveReplicaNameProperty,
-                                            entry.getArchiveReplicaName(),
-                                            HTMLUtils.escapeHtmlValues(
-                                                    entry.getArchiveReplicaName()))%>
+                JMXSummaryUtils.JMXMachineNameProperty,
+                entry.getMachineName(),
+                HTMLUtils.escapeHtmlValues
+                        (DomainUtils.reduceHostname(
+                                entry.getMachineName())))%>
+        </td>
+        <%
+            }
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXApplicationNameProperty)) {
+        %>
+        <td><%=JMXSummaryUtils.generateLink(starredRequest,
+                JMXSummaryUtils.JMXApplicationNameProperty,
+                entry.getApplicationName(),
+                HTMLUtils.escapeHtmlValues
+                        (JMXSummaryUtils.reduceApplicationName(
+                                entry.getApplicationName())))%>
+        </td>
+        <%
+            }
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXApplicationInstIdProperty)) {
+        %>
+        <td><%=JMXSummaryUtils.generateLink(starredRequest,
+                JMXSummaryUtils.JMXApplicationInstIdProperty,
+                entry.getApplicationInstanceID(),
+                HTMLUtils.escapeHtmlValues(
+                        entry.getApplicationInstanceID()))%>
+        </td>
+        <%
+            }
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXHttpportProperty)) {
+        %>
+        <td><%=JMXSummaryUtils.generateLink(starredRequest,
+                JMXSummaryUtils.JMXHttpportProperty,
+                entry.getHTTPPort(),
+                HTMLUtils.escapeHtmlValues(
+                        entry.getHTTPPort()))%>
+        </td>
+        <%
+            }
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXHarvestChannelProperty)) {
+        %>
+        <td><%=JMXSummaryUtils.generateLink(starredRequest,
+                JMXSummaryUtils.JMXHarvestChannelProperty,
+                entry.getHarvestPriority(),
+                HTMLUtils.escapeHtmlValues(
+                        entry.getHarvestPriority()))%>
+        </td>
+        <%
+            }
+            if (JMXSummaryUtils.showColumn(starredRequest,
+                    JMXSummaryUtils.JMXArchiveReplicaNameProperty)) {
+        %>
+        <td><%=JMXSummaryUtils.generateLink(starredRequest,
+                JMXSummaryUtils.JMXArchiveReplicaNameProperty,
+                entry.getArchiveReplicaName(),
+                HTMLUtils.escapeHtmlValues(
+                        entry.getArchiveReplicaName()))%>
         </td>
         <%
             }
         %>
         <td><%=JMXSummaryUtils.generateLink(starredRequest,
-                                            JMXSummaryUtils.JMXIndexProperty,
-                                            entry.getIndex(),
-                                            HTMLUtils.escapeHtmlValues(
-                                                    entry.getIndex()))%>
+                JMXSummaryUtils.JMXIndexProperty,
+                entry.getIndex(),
+                HTMLUtils.escapeHtmlValues(
+                        entry.getIndex()))%>
         </td>
         <td><%=JMXSummaryUtils.generateMessage(entry.getLogMessage(response
                 .getLocale()), currentLocale)%>
         </td>
         <%
             if (JMXSummaryUtils.showColumn(starredRequest,
-                                           JMXSummaryUtils.JMXRemoveApplication)) {
+                    JMXSummaryUtils.JMXRemoveApplication)) {
         %>
         <td><%="<form>"
-               + "<input onClick=\"parent.location='/"+ JMXSummaryUtils.STATUS_MONITOR_JMXSUMMARY + "?"
-               + Constants.REMOVE + "=" + Constants.REMOVE
-               + "&machine=" + HTMLUtils.escapeHtmlValues(entry.getMachineName())
-               + "&httpport=" + HTMLUtils.escapeHtmlValues(entry.getHTTPPort())
-               + "&applicationinstanceid=" + HTMLUtils.escapeHtmlValues(entry.getApplicationInstanceID())
-               + "&applicationname=" + HTMLUtils.escapeHtmlValues(entry.getApplicationName())
-               + "&oldquery=" + java.net.URLEncoder.encode("" + request.getQueryString())
-               + "'\" type=\"button\" value=\""%><fmt:message key="tablefield;removeapplication"/><%="\" />"
-               + "</form>"
-            %>
+                + "<input onClick=\"parent.location='/"+ JMXSummaryUtils.STATUS_MONITOR_JMXSUMMARY + "?"
+                + Constants.REMOVE + "=" + Constants.REMOVE
+                + "&machine=" + HTMLUtils.escapeHtmlValues(entry.getMachineName())
+                + "&httpport=" + HTMLUtils.escapeHtmlValues(entry.getHTTPPort())
+                + "&applicationinstanceid=" + HTMLUtils.escapeHtmlValues(entry.getApplicationInstanceID())
+                + "&applicationname=" + HTMLUtils.escapeHtmlValues(entry.getApplicationName())
+                + "&oldquery=" + java.net.URLEncoder.encode("" + request.getQueryString())
+                + "'\" type=\"button\" value=\""%><fmt:message key="tablefield;removeapplication"/><%="\" />"
+                + "</form>"
+        %>
         </td>
         <%
             }
@@ -319,6 +343,7 @@ will not appear here.
         }
     %>
 </table>
+</div>
 <%
     HTMLUtils.generateFooter(out);
 %>
