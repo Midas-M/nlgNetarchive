@@ -303,7 +303,7 @@ public class HTMLUtils {
         out.print("<table id=\"menu_table\">\n");
         String s = I18N.getString(locale, "sidebar.title.menu");
         out.print("<tr><td><a class=\"sidebarHeader\" href=\"index.jsp\">"
-                + "<img src=\"transparent_menu_logo.png\" alt=\"" + s + "\"/> " + s + "</a></td></tr>\n");
+                + "<img src=\"logo_nlg_menu.png\" alt=\"" + s + "\"/> " + s + "</a></td></tr>\n");
 
         for (SiteSection section : SiteSection.getSections()) {
             section.generateNavigationTree(out, url, locale);
@@ -328,8 +328,7 @@ public class HTMLUtils {
         out.print("</table>\n");
         // Add information about the running system
         out.print("<div class='systeminfo'>");
-        out.print("NetarchiveSuite " + Constants.getVersionString(true) + ", "
-                + Settings.get(CommonSettings.ENVIRONMENT_NAME));
+        out.print("Σύστημα Αρχειοθήτησης Ιστού - Εθνική Βιβλιοθήκη της Ελλάδος");
         out.print("</div>");
         // Close the page
         out.print("</body></html>");
