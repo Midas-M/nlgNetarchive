@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/test/QUICKSTART
+export CLASSPATH=/home/test/QUICKSTART/lib/netarchivesuite-monitor-core.jar:/home/test/QUICKSTART/lib/dk.netarkivet.harvester.jar:/home/test/QUICKSTART/lib/dk.netarkivet.archive.jar:/home/test/QUICKSTART/lib/dk.netarkivet.monitor.jar:/home/test/QUICKSTART/lib/dk.netarkivet.wayback.jar:/home/test/QUICKSTART/lib/netarchivesuite-harvest-scheduler.jar:/home/test/QUICKSTART/lib/netarchivesuite-monitor-core.jar:/home/test/QUICKSTART/lib/dk.netarkivet.harvester.jar:/home/test/QUICKSTART/lib/dk.netarkivet.archive.jar:/home/test/QUICKSTART/lib/dk.netarkivet.monitor.jar:/home/test/QUICKSTART/lib/dk.netarkivet.wayback.jar:/home/test/QUICKSTART/lib/netarchivesuite-harvester-core.jar:
+java -Ddk.netarkivet.settings.file=/home/test/QUICKSTART/conf/settings_update_external_harvest_database.xml dk.netarkivet.harvester.tools.HarvestdatabaseUpdateApplication < /dev/null >> update_external_harvest_database.log 2>&1 &
