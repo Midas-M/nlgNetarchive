@@ -125,6 +125,12 @@ public class JMXSummaryUtils {
         return split[split.length - 1];
     }
 
+    public static String checkSOLRStatus(){
+
+        return "DOWN";
+    }
+
+
     /**
      * Creates the show links for showing columns again.
      * <p>

@@ -98,6 +98,7 @@ will not appear here.
     <h4 class="page_heading">
         <fmt:message key="pagesubtitle;monitor.solr"/>
     </h4>
+
     <table id="solr_state_table">
         <tr>
             <th>
@@ -109,7 +110,7 @@ will not appear here.
         </tr>
         <tr>
             <td>NODE A</td>
-            <td>UP</td>
+            <td><%= JMXSummaryUtils.checkSOLRStatus()%></td>
         </tr>
     </table>
 </div>
