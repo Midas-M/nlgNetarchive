@@ -26,9 +26,12 @@ package dk.netarkivet.monitor.webinterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Random;
+import java.util.Set;
 
 import javax.management.MalformedObjectNameException;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +41,7 @@ import javax.servlet.jsp.PageContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import dk.netarkivet.monitor.tools.Network;
 import dk.netarkivet.common.exceptions.ArgumentNotValid;
 import dk.netarkivet.common.exceptions.ForwardedToErrorPage;
 import dk.netarkivet.common.utils.DomainUtils;
@@ -125,9 +128,35 @@ public class JMXSummaryUtils {
         return split[split.length - 1];
     }
 
-    public static String checkSOLRStatus(){
+    /**
+     * Checks the Status of all SOLR nodes
+     *
+     * @return node status: UP?DOWN
+     */
+    public static List<String> checkSOLRStatus(){
+        ArrayList<String> result=new ArrayList();
+        String collectionSocketListstr = Settings.get(MonitorSettings.SOLR_SOCKETS);
+        ArgumentNotValid.checkNotNullOrEmpty(collectionSocketListstr,"SOLR socket List");
+        String[] solrSockets=collectionSocketListstr.split(";");
+        String res="";
+        Network netHandler=new Network();
+        for (String socket:solrSockets){
+            try {
+                String apiResponse = netHandler.sendGet(socket+"/solr/admin/cores?action=STATUS");
+                if(apiResponse.contains("active")) {
+                    result.add(socket+";"+"UP");
 
-        return "DOWN";
+                }
+                else{
+                    result.add(socket+";"+"DOWN");
+                }
+            }
+            catch (Exception e){
+                result.add(socket+";"+"DOWN");
+
+            }
+        }
+        return result;
     }
 
 

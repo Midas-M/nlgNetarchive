@@ -1,5 +1,6 @@
 <settings>
     <common>
+
       <environmentName>QUICKSTART</environmentName>
       <applicationInstanceId/>
       <remoteFile>
@@ -39,6 +40,9 @@
               <port>8074</port>
             </http><applicationName>dk.netarkivet.common.webinterface.GUIApplication</applicationName></common>
     <monitor>
+      <SOLRSockets>
+        http://localhost:8983;http://localhost:7574
+      </SOLRSockets>
       <jmxUsername>monitorRole</jmxUsername>
       <jmxPassword>test</jmxPassword>
     </monitor>

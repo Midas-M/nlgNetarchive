@@ -46,6 +46,18 @@ public class MonitorSettings {
     /* The setting names used should be declared and documented here */
 
     /**
+     * <b>settings.monitor.SOLRCollection</b>: <br>
+     * The name of the SOLR collection
+     */
+    public static String SOLR_COLLECTION_NAME = "settings.monitor.SOLRCollection";
+    /**
+     * <b>settings.monitor.SOLRSockets</b>: <br>
+     * All ip:port locations of the SOLR nodes,shards and replicas separated with ";"
+     */
+    public static String SOLR_SOCKETS = "settings.monitor.SOLRSockets";
+
+
+    /**
      * <b>settings.monitor.jmxUsername</b>: <br>
      * The username used to connect to the all MBeanservers started by the application. The username must correspond to
      * the value stored in the jmxremote.password file (name defined in setting settings.common.jmx.passwordFile).

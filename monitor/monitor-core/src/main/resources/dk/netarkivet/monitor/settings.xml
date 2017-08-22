@@ -42,5 +42,6 @@ National Library.
         <reregisterDelay>1</reregisterDelay>
         <preferredMaxJMXLogLength>70</preferredMaxJMXLogLength>
         <absoluteMaxJMXLogLength>100</absoluteMaxJMXLogLength>
+
     </monitor>
 </settings>
