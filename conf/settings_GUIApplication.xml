@@ -43,6 +43,12 @@
       <SOLRSockets>
         http://localhost:8983;http://localhost:7574
       </SOLRSockets>
+      <WAYBACKSockets>
+        http://localhost:8080
+      </WAYBACKSockets>
+      <WAYBACKCollection>
+        nlg_archive
+      </WAYBACKCollection>
       <jmxUsername>monitorRole</jmxUsername>
       <jmxPassword>test</jmxPassword>
     </monitor>

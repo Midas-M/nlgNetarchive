@@ -131,6 +131,40 @@ will not appear here.
 </div>
 <div>
     <h4 class="page_heading">
+        <fmt:message key="pagesubtitle;monitor.wayback"/>
+    </h4>
+
+    <table id="wayback_state_table">
+        <tr>
+            <th>
+                WAYBACK NODE
+            </th>
+            <th>
+                STATUS
+            </th>
+        </tr>
+        <%
+
+            List<String> w = JMXSummaryUtils.checkWaybackStatus();
+        %><%
+        for(String result:w) {
+    %>
+        <tr>
+            <td>
+                <%= result.split(";")[0]%>
+            </td>
+            <td>
+                <%= result.split(";")[1]%>
+            </td>
+            <%
+                }
+            %>
+
+        </tr>
+    </table>
+</div>
+<div>
+    <h4 class="page_heading">
         <fmt:message key="pagesubtitle;monitor.netarch"/>
 
     </h4>

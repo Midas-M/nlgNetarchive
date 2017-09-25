@@ -48,7 +48,7 @@ public class DefinitionsSiteSection extends SiteSection {
     //private Log log = LogFactory.getLog(getClass().getName());
     protected static final Logger log = LoggerFactory.getLogger(DefinitionsSiteSection.class);
     /** number of pages visible in the left menu. */
-    private static final int PAGES_VISIBLE_IN_MENU = 10;
+    private static final int PAGES_VISIBLE_IN_MENU = 8;
 
     /**
      * Create a new definition SiteSection object.
@@ -61,10 +61,10 @@ public class DefinitionsSiteSection extends SiteSection {
                 {"find-domains", "pagetitle;find.domains"},
                 {"create-domain", "pagetitle;create.domain"},
                 {"domain-statistics", "pagetitle;domain.statistics"},
-                {"alias-summary", "pagetitle;alias.summary"},
+               //{"alias-summary", "pagetitle;alias.summary"},
                 {"edit-harvest-templates", "pagetitle;edit.harvest.templates"},
                 {"edit-global-crawler-traps", "pagetitle;edit.global.crawler.traps"},
-                {"list-extendedfields", "pagetitle;list-extendedfields"},
+                //{"list-extendedfields", "pagetitle;list-extendedfields"},
                 // The pages listed below are not visible in the left menu
                 {"upload-harvest-template", "pagetitle;upload.template"},
                 {"download-harvest-template", "pagetitle;download.template"},

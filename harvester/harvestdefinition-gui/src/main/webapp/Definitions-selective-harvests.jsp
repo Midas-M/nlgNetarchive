@@ -183,8 +183,8 @@ inactive or vice-versa.
                 <fmt:message key="harvestdefinition.linktext.seeds"/>
             </a>
         </td>
-        <td width="<%=COMMANDWIDTH%>">
-            <% if (inclHistory) { %>
+        <!--<td width="<%=COMMANDWIDTH%>">
+           <% if (inclHistory) { %>
             <a href="<%=HTMLUtils.escapeHtmlValues(historicLink)%>">
                 <fmt:message key="harvestdefinition.linktext.historical"/></a>
             <% } else { %>

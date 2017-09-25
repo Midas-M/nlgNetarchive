@@ -128,14 +128,14 @@ if (!ihd.iterator().hasNext()) { %>
             	<fmt:message key="edit"/>
             </a>
         </td>
-        <td width="10%">
+        <!--<td width="10%">
             <% if (inclHistory)  { %>
                 <a href="<%=HTMLUtils.escapeHtmlValues(historicLink)%>">
                     <fmt:message key="harvestdefinition.linktext.historical"/></a>
             <% } else { %>
                 <fmt:message key="harvestdefinition.linktext.no.historical"/>
             <% } %>
-        </td>
+        </td>-->
     </tr>
     <%
     } //for each harvest

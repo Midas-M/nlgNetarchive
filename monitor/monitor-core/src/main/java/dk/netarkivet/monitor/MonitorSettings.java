@@ -55,8 +55,16 @@ public class MonitorSettings {
      * All ip:port locations of the SOLR nodes,shards and replicas separated with ";"
      */
     public static String SOLR_SOCKETS = "settings.monitor.SOLRSockets";
-
-
+    /**
+     * <b>settings.monitor.WaybackSockets</b>: <br>
+     * All ip:port locations of the Wayback nodes separated with ";"
+     */
+    public static String WAYBACK_SOCKETS = "settings.monitor.WAYBACKSockets";
+    /**
+     * <b>settings.monitor.WAYBACKCollection</b>: <br>
+     * The name of the wayback collection on all nodes
+     */
+    public static String WAYBACK_COLLECTION_NAME = "settings.monitor.WAYBACKCollection";
     /**
      * <b>settings.monitor.jmxUsername</b>: <br>
      * The username used to connect to the all MBeanservers started by the application. The username must correspond to

@@ -131,7 +131,7 @@ public class JMXSummaryUtils {
     /**
      * Checks the Status of all SOLR nodes
      *
-     * @return node status: UP?DOWN
+     * @return List of nodes: nodeName;UP?DOWN
      */
     public static List<String> checkSOLRStatus(){
         ArrayList<String> result=new ArrayList();
@@ -145,7 +145,6 @@ public class JMXSummaryUtils {
                 String apiResponse = netHandler.sendGet(socket+"/solr/admin/cores?action=STATUS");
                 if(apiResponse.contains("active")) {
                     result.add(socket+";"+"UP");
-
                 }
                 else{
                     result.add(socket+";"+"DOWN");
@@ -160,6 +159,35 @@ public class JMXSummaryUtils {
     }
 
 
+    /**
+     * Checks the Status of all Wayback nodes
+     *
+     * @return List of nodes: nodeName;UP?DOWN
+     */
+    public static List<String> checkWaybackStatus(){
+        ArrayList<String> result=new ArrayList();
+        String collectionSocketListstr = Settings.get(MonitorSettings.WAYBACK_SOCKETS);
+        ArgumentNotValid.checkNotNullOrEmpty(collectionSocketListstr,"Wayback socket List");
+        String[] solrSockets=collectionSocketListstr.split(";");
+        String res="";
+        Network netHandler=new Network();
+        for (String socket:solrSockets){
+            try {
+                String apiResponse = netHandler.sendGet(socket);
+                if(apiResponse!=null && !apiResponse.isEmpty() && apiResponse.contains(Settings.get(MonitorSettings.WAYBACK_COLLECTION_NAME))){
+                    result.add(socket+";"+"UP");
+                }
+                else{
+                    result.add(socket+";"+"DOWN");
+                }
+            }
+            catch (Exception e){
+                result.add(socket+";"+"DOWN");
+
+            }
+        }
+        return result;
+    }
     /**
      * Creates the show links for showing columns again.
      * <p>
