@@ -894,7 +894,9 @@ public class FileUtils {
         ArgumentNotValid.checkNotNull(toFile, "File toFile");
 
         if (!fromFile.renameTo(toFile)) {
+            log.warn("cp 2 file:", toFile);
             copyFile(fromFile, toFile);
+            log.warn("del file:", fromFile);
             remove(fromFile);
         }
     }

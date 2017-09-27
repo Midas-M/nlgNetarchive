@@ -17,8 +17,13 @@
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
       <scope>provided</scope>
-    </dependency>	
-</dependencies>
+    </dependency>
+    <dependency>
+      <groupId>org.netarchivesuite</groupId>
+      <artifactId>common-core</artifactId>
+      <version>5.4-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
   <build>
     <finalName>BitPreservation</finalName>
   </build>

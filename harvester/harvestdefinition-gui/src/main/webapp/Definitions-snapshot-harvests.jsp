@@ -130,6 +130,7 @@ if (!ihd.iterator().hasNext()) { %>
         </td>
         <!--<td width="10%">
             <% if (inclHistory)  { %>
+
                 <a href="<%=HTMLUtils.escapeHtmlValues(historicLink)%>">
                     <fmt:message key="harvestdefinition.linktext.historical"/></a>
             <% } else { %>

@@ -56,6 +56,7 @@ import dk.netarkivet.harvester.datamodel.DomainDAO;
 import dk.netarkivet.harvester.datamodel.NamedUtils;
 import dk.netarkivet.harvester.datamodel.SeedList;
 import dk.netarkivet.harvester.datamodel.extendedfield.ExtendedFieldTypes;
+import gr.nlg.ArchiveQueryService;
 
 /**
  * Utility class for handling update of domain from the domain jsp page.
@@ -341,20 +342,22 @@ public class DomainDefinition {
      * @param searchType The given searchCriteria 
      * @return the set of domain-names matching the given criteria.
      */
-    public static List<String> getDomains(PageContext context, I18n i18n, String searchQuery, String searchType) {
-        List<String> resultSet = new ArrayList<String>();
+    public static String getDomains(PageContext context, I18n i18n, String searchQuery, String searchType) {
+        String resultSet;
         ArgumentNotValid.checkNotNullOrEmpty(searchQuery, "String searchQuery");
         ArgumentNotValid.checkNotNullOrEmpty(searchType, "String searchType");
 
-        try {
-            DomainSearchType.parse(searchType);
-        } catch (ArgumentNotValid e) {
-            HTMLUtils.forwardWithErrorMessage(context, i18n, "errormsg;invalid.domain.search.criteria.0", searchType);
-            throw new ForwardedToErrorPage("Unknown domain search criteria '" + searchType + "'");
-        }
+        //try {
+        //    DomainSearchType.parse(searchType);
+        //} catch (ArgumentNotValid e) {
+        //    HTMLUtils.forwardWithErrorMessage(context, i18n, "errormsg;invalid.domain.search.criteria.0", searchType);
+        //    throw new ForwardedToErrorPage("Unknown domain search criteria '" + searchType + "'");
+        //}
 
         log.debug("SearchQuery '" + searchQuery + "', searchType: " + searchType);
-        resultSet = DomainDAO.getInstance().getDomains(searchQuery, searchType);
+        ArchiveQueryService service=new ArchiveQueryService();
+        resultSet=service.getUrls(searchQuery,"none","none");
+        //resultSet = DomainDAO.getInstance().getDomains(searchQuery, searchType);
         return resultSet;
     }
 

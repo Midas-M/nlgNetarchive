@@ -190,7 +190,7 @@ inactive or vice-versa.
             <% } else { %>
             <fmt:message key="harvestdefinition.linktext.no.historical"/>
             <% } %>
-        </td>
+        </td>-->
     </tr>
     <%
         } //for each harvest

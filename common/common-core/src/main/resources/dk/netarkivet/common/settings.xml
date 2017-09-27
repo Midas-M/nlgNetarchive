@@ -107,49 +107,48 @@ National Library.
                 <name>Français</name>
             </language>
             -->
-            <!--
-            <siteSection>
-                <class>dk.netarkivet.harvester.webinterface.DefinitionsSiteSection</class>
-                <webapplication>webpages/HarvestDefinition.war</webapplication>
-            </siteSection>
-            -->
-            <!--
-            <siteSection>
-                <class>dk.netarkivet.harvester.webinterface.HistorySiteSection</class>
-                <webapplication>webpages/History.war</webapplication>
-            </siteSection>
-            -->
-            <!--
-            <siteSection>
-                <class>dk.netarkivet.harvester.webinterface.HarvestChannelSiteSection</class>
-                <webapplication>webpages/HarvestChannel.war</webapplication>
-            </siteSection>
-            -->
-            <!--
-            <siteSection>
-                <class>dk.netarkivet.archive.webinterface.BitPreservationSiteSection</class>
-                <webapplication>webpages/BitPreservation.war</webapplication>
-            </siteSection>
-            -->
-            <!--
-            <siteSection>
-                <class>dk.netarkivet.viewerproxy.webinterface.QASiteSection</class>
-                <webapplication>webpages/QA.war</webapplication>
-            </siteSection>
-            -->
-            <siteSection>
-                <class>dk.netarkivet.monitor.webinterface.StatusSiteSection</class>
-                <webapplication>webpages/Status.war</webapplication>
-            </siteSection>
-            <harvestStatus>
-                <defaultPageSize>100</defaultPageSize>
-            </harvestStatus>
-            <hideInactiveTemplates>false</hideInactiveTemplates>
-        </webinterface>
-        <topLevelDomains>
-        <!-- add extra top level domains not included in embedded https://publicsuffix.org/list/public_suffix_list.dat
-        	e.g: <tld> anothertld </tld> 
-         -->
+
+                                    <siteSection>
+                                        <class>dk.netarkivet.harvester.webinterface.DefinitionsSiteSection</class>
+                                        <webapplication>webpages/HarvestDefinition.war</webapplication>
+                                    </siteSection>
+
+
+                                    <siteSection>
+                                        <class>dk.netarkivet.harvester.webinterface.HistorySiteSection</class>
+                                        <webapplication>webpages/History.war</webapplication>
+                                    </siteSection>
+
+
+                                    <siteSection>
+                                        <class>dk.netarkivet.harvester.webinterface.HarvestChannelSiteSection</class>
+                                        <webapplication>webpages/HarvestChannel.war</webapplication>
+                                    </siteSection>
+
+
+                                    <siteSection>
+                                        <class>dk.netarkivet.archive.webinterface.BitPreservationSiteSection</class>
+                                        <webapplication>webpages/BitPreservation.war</webapplication>
+                                    </siteSection>
+
+                                    <siteSection>
+                                        <class>dk.netarkivet.viewerproxy.webinterface.QASiteSection</class>
+                                        <webapplication>webpages/QA.war</webapplication>
+                                    </siteSection>
+
+                        <siteSection>
+                            <class>dk.netarkivet.monitor.webinterface.StatusSiteSection</class>
+                            <webapplication>webpages/Status.war</webapplication>
+                        </siteSection>
+                        <harvestStatus>
+                            <defaultPageSize>100</defaultPageSize>
+                        </harvestStatus>
+                        <hideInactiveTemplates>false</hideInactiveTemplates>
+                    </webinterface>
+                    <topLevelDomains>
+                    <!-- add extra top level domains not included in embedded https://publicsuffix.org/list/public_suffix_list.dat
+                            e.g: <tld> anothertld </tld>
+                     -->
         </topLevelDomains>
         <database>
             <class>dk.netarkivet.harvester.datamodel.DerbyServerSpecifics</class>

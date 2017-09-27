@@ -47,6 +47,7 @@ The search-system are now able to search in different fields of the 'domain' tab
                  dk.netarkivet.harvester.webinterface.DomainSearchType"
          pageEncoding="UTF-8"
 %>
+<%@ page import="java.util.Arrays" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"
 %><fmt:setLocale value="<%=HTMLUtils.getLocale(request)%>" scope="page"
 /><fmt:setBundle scope="page" basename="<%=dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE%>"/>
@@ -66,8 +67,8 @@ The search-system are now able to search in different fields of the 'domain' tab
     if (searchQuery != null && searchQuery.trim().length() > 0) {
         // search field is not empty
         searchQuery = searchQuery.trim();
-        List<String> matchingDomains = DomainDefinition.getDomains(
-                pageContext, I18N, searchQuery, searchType);
+        List<String> matchingDomains = Arrays.asList(DomainDefinition.getDomains(
+                pageContext, I18N, searchQuery, searchType).split(""));
 
             if (matchingDomains.isEmpty()) { // No matching domains
                 HTMLUtils.forwardWithErrorMessage(pageContext, I18N,
@@ -212,6 +213,7 @@ The search-system are now able to search in different fields of the 'domain' tab
   <fmt:message key="harvestdefinition.linktext.historical"/></a>
 </td>
 <% } %>
+
 </tr>
 
 <%

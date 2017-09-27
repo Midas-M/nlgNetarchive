@@ -212,13 +212,15 @@ public class ArcRepository implements CleanupIF {
                 replyNotOK(filename, replyInfo);
                 return;
             }
-            log.debug("Retrying store of already known file '{}'," + " Already completed: {}", filename,
+            log.info("Retrying store of already known file '{}'," + " Already completed: {}", filename,
                     isStoreCompleted(filename));
             ad.setReplyInfo(filename, replyInfo);
         } else {
+            log.warn("add Entry");
             ad.addEntry(filename, replyInfo, rf.getChecksum());
         }
         for (Map.Entry<Replica, ReplicaClient> entry : connectedReplicas.entrySet()) {
+            log.info("uploading");
             startUpload(rf, entry.getValue(), entry.getKey(), replyInfo);
         }
 
@@ -236,7 +238,7 @@ public class ArcRepository implements CleanupIF {
      */
     private synchronized void startUpload(RemoteFile rf, ReplicaClient replicaClient, Replica replica, StoreMessage replyInfo) {
         final String filename = rf.getName();
-        log.debug("Upload started of file '{}' to replica '{}'", filename, replica.getId());
+        log.info("Upload started of file '{}' to replica '{}'", filename, replica.getId());
 
         String replicaChannelId = replica.getIdentificationChannel().getName();
 
@@ -257,7 +259,7 @@ public class ArcRepository implements CleanupIF {
                 // Unknown condition in bitarchive. Test with checksum job.
                 if (storeState == ReplicaStoreState.UPLOAD_FAILED) {
                     ad.setState(filename, replicaChannelId, ReplicaStoreState.UPLOAD_STARTED);
-                    log.info("ReplicaStoreState for file '{}' on replica '{}' changed from '{}' to '{}'", filename,
+                    log.debug("ReplicaStoreState for file '{}' on replica '{}' changed from '{}' to '{}'", filename,
                             replica, ReplicaStoreState.UPLOAD_FAILED, ReplicaStoreState.UPLOAD_STARTED);
                 }
                 sendChecksumRequestForFile(filename, replicaClient);
@@ -299,6 +301,7 @@ public class ArcRepository implements CleanupIF {
      * @param arcFileName The arcfile we consider replying to.
      */
     private synchronized void considerReplyingOnStore(String arcFileName) {
+        log.info("Considering reply",arcFileName);
         if (ad.hasReplyInfo(arcFileName)) {
             if (isStoreCompleted(arcFileName)) {
                 replyOK(arcFileName, ad.removeReplyInfo(arcFileName));

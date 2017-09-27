@@ -234,7 +234,7 @@ public class JMSArcRepositoryClient extends Synchronizer implements ArcRepositor
         for (long i = 0; i < storeRetries; i++) {
             StoreMessage outMsg = null;
             try {
-                log.debug("Sending a StoreMessage with file '{}'", file.getPath());
+                log.info("Sending a StoreMessage with file '{}'", file.getPath());
                 outMsg = new StoreMessage(replyQ, file);
                 NetarkivetMessage replyMsg = sendAndWaitForOneReply(outMsg, storeTimeout);
                 if (replyMsg != null && replyMsg.isOk()) {

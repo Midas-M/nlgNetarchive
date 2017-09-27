@@ -117,7 +117,7 @@ public class Synchronizer implements MessageListener {
                                 // wait(0) on the next loop with disastrous
                                 // results
                                 requests.remove(msg.getID());
-                                log.debug("Timed out waiting for reply to {}", msg.toString());
+                                log.info("Timed out waiting for reply to {}", msg.toString());
                                 return null;
                             }
                         }
@@ -130,7 +130,7 @@ public class Synchronizer implements MessageListener {
         // If we get here, we must have received the expected reply
         synchronized (requests) {
             requests.remove(msg.getID());
-            log.debug("Received reply for message: {}", msg.toString());
+            log.info("Received reply for message: {}", msg.toString());
             return replies.remove(msg.getID());
         }
     }
