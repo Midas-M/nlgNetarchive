@@ -48,6 +48,8 @@ The search-system are now able to search in different fields of the 'domain' tab
          pageEncoding="UTF-8"
 %>
 <%@ page import="java.util.Arrays" %>
+<%@ page import="gr.nlg.structures.ResponseWrapper" %>
+<%@ page import="gr.nlg.structures.ArchiveUrl" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"
 %><fmt:setLocale value="<%=HTMLUtils.getLocale(request)%>" scope="page"
 /><fmt:setBundle scope="page" basename="<%=dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE%>"/>
@@ -67,8 +69,10 @@ The search-system are now able to search in different fields of the 'domain' tab
     if (searchQuery != null && searchQuery.trim().length() > 0) {
         // search field is not empty
         searchQuery = searchQuery.trim();
-        List<String> matchingDomains = Arrays.asList(DomainDefinition.getDomains(
-                pageContext, I18N, searchQuery, searchType).split(""));
+
+        //Gson gson=new Gson();
+        ResponseWrapper res = DomainDefinition.getDomains(pageContext, I18N, searchQuery, searchType);
+        List<ArchiveUrl> matchingDomains = res.getItems();
 
             if (matchingDomains.isEmpty()) { // No matching domains
                 HTMLUtils.forwardWithErrorMessage(pageContext, I18N,
@@ -180,7 +184,7 @@ The search-system are now able to search in different fields of the 'domain' tab
 
 
 <%
-  List<String> matchingDomainsSubList = matchingDomains.
+  List<ArchiveUrl> matchingDomainsSubList = matchingDomains.
           subList((int)startIndex,(int)endIndex);
   int rowCount = 0;
   if (matchingDomainsSubList.size() > 0) {
@@ -189,29 +193,34 @@ The search-system are now able to search in different fields of the 'domain' tab
 <tr>
   <th><fmt:message key="domain"/></th>
   <th><fmt:message key="harvestdefinition.linktext.historical"/></th>
+    <th>wayback</th>
 </tr>
 
 <%
-                for (String domainS : matchingDomainsSubList) {
-                    String encodedDomain = HTMLUtils.encode(domainS);
+                for (ArchiveUrl domainS : matchingDomainsSubList) {
+                    String encodedDomain = HTMLUtils.encode(domainS.getUrl());
                     %>
 <tr class="<%=HTMLUtils.getRowClass(rowCount++)%>">
   <td>
                    <a href="Definitions-edit-domain.jsp?<%=
                       Constants.DOMAIN_PARAM%>=<%=
                       HTMLUtils.escapeHtmlValues(encodedDomain)%>"><%=
-                      HTMLUtils.escapeHtmlValues(domainS)%>
+                      HTMLUtils.escapeHtmlValues(domainS.getUrl())%>
                     </a>
 
 </td>
 <%
   if (SiteSection.isDeployed("History")) {
     String historyLink = "/History/Harveststatus-perdomain.jsp?domainName="
-            + HTMLUtils.encode(domainS);
+            + HTMLUtils.encode(domainS.getUrl());
 %>
 <td><a href="<%=HTMLUtils.escapeHtmlValues(historyLink)%>">
   <fmt:message key="harvestdefinition.linktext.historical"/></a>
 </td>
+    <td><a href="<%=HTMLUtils.escapeHtmlValues(domainS.getUrl())%>">
+       wayback</a>
+    </td>
+
 <% } %>
 
 </tr>

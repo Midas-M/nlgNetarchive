@@ -5,6 +5,8 @@
  */
 package gr.nlg;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -21,7 +23,6 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
-import com.google.gson.Gson;
 
 import gr.nlg.structures.ArchiveUrl;
 import gr.nlg.structures.ResponseWrapper;
@@ -34,7 +35,7 @@ public class ArchiveQueryService {
 
     DateTimeFormatter formatter=  DateTimeFormatter.ISO_INSTANT;
 
-    public String getUrls(String input,String dateFromRaw,String dateToRaw) {
+    public ResponseWrapper getUrls(String input,String dateFromRaw,String dateToRaw) {
         //DATE FORMATS ISO_INSTANT
         ZonedDateTime dateFrom;
         ZonedDateTime dateTo;
@@ -76,7 +77,7 @@ public class ArchiveQueryService {
         solrQuery.setQuery(query);
 
         solrQuery.setRows(150);
-        String urlString = "http://83.212.248.65:8983/solr/nlg_archive";
+        String urlString = "http://185.78.220.36:8983/solr/nlg_archive";
         SolrClient server = new HttpSolrClient.Builder(urlString).build();
         QueryResponse response = null;
         try {
@@ -95,6 +96,13 @@ public class ArchiveQueryService {
         while (iter.hasNext()) {
             SolrDocument doc = iter.next();
             String url = doc.get("url_s").toString();
+            URI uri = null;
+            try {
+                uri = new URI(url);
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            String domain = uri.getHost();
             Date dDate = (Date) doc.get("date_dt");
             String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(dDate);
             String title = doc.get("title_t").toString();
@@ -104,11 +112,11 @@ public class ArchiveQueryService {
             } catch (NullPointerException e){
                 content = doc.get("content_t").toString();
             }
-            responseWrapper.add(new ArchiveUrl( url,  date,  title,  content));
+            responseWrapper.add(new ArchiveUrl( domain,  date,  title,  content));
         }
-        Gson gson = new Gson();
-        String APIresponse = gson.toJson(responseWrapper);
-        return APIresponse;
+        //Gson gson = new Gson();
+        //String APIresponse = gson.toJson(responseWrapper);
+        return responseWrapper;
     }
 
     private static String getQuery(String keywords,String dateRange) {

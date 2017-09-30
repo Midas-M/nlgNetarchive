@@ -57,6 +57,7 @@ import dk.netarkivet.harvester.datamodel.NamedUtils;
 import dk.netarkivet.harvester.datamodel.SeedList;
 import dk.netarkivet.harvester.datamodel.extendedfield.ExtendedFieldTypes;
 import gr.nlg.ArchiveQueryService;
+import gr.nlg.structures.ResponseWrapper;
 
 /**
  * Utility class for handling update of domain from the domain jsp page.
@@ -342,8 +343,8 @@ public class DomainDefinition {
      * @param searchType The given searchCriteria 
      * @return the set of domain-names matching the given criteria.
      */
-    public static String getDomains(PageContext context, I18n i18n, String searchQuery, String searchType) {
-        String resultSet;
+    public static ResponseWrapper getDomains(PageContext context, I18n i18n, String searchQuery, String searchType) {
+        ResponseWrapper resultSet;
         ArgumentNotValid.checkNotNullOrEmpty(searchQuery, "String searchQuery");
         ArgumentNotValid.checkNotNullOrEmpty(searchType, "String searchType");
 
