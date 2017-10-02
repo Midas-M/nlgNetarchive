@@ -96,13 +96,7 @@ public class ArchiveQueryService {
         while (iter.hasNext()) {
             SolrDocument doc = iter.next();
             String url = doc.get("url_s").toString();
-            URI uri = null;
-            try {
-                uri = new URI(url);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-            String domain = uri.getHost();
+            String wayback = doc.get("wayback_s").toString();
             Date dDate = (Date) doc.get("date_dt");
             String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(dDate);
             String title = doc.get("title_t").toString();
@@ -112,7 +106,7 @@ public class ArchiveQueryService {
             } catch (NullPointerException e){
                 content = doc.get("content_t").toString();
             }
-            responseWrapper.add(new ArchiveUrl( domain,  date,  title,  content));
+            responseWrapper.add(new ArchiveUrl( url,  date,  title,  content,wayback));
         }
         //Gson gson = new Gson();
         //String APIresponse = gson.toJson(responseWrapper);

@@ -198,14 +198,14 @@ The search-system are now able to search in different fields of the 'domain' tab
 
 <%
                 for (ArchiveUrl domainS : matchingDomainsSubList) {
-                    String encodedDomain = HTMLUtils.encode(domainS.getUrl());
+                    String encodedDomain = HTMLUtils.encode(domainS.getDomain());
                     %>
 <tr class="<%=HTMLUtils.getRowClass(rowCount++)%>">
   <td>
                    <a href="Definitions-edit-domain.jsp?<%=
                       Constants.DOMAIN_PARAM%>=<%=
-                      HTMLUtils.escapeHtmlValues(encodedDomain)%>"><%=
-                      HTMLUtils.escapeHtmlValues(domainS.getUrl())%>
+                      HTMLUtils.escapeHtmlValues(encodedDomain)%>target="_blank""><%=
+                      HTMLUtils.escapeHtmlValues(domainS.getDomain())%>
                     </a>
 
 </td>
@@ -217,7 +217,7 @@ The search-system are now able to search in different fields of the 'domain' tab
 <td><a href="<%=HTMLUtils.escapeHtmlValues(historyLink)%>">
   <fmt:message key="harvestdefinition.linktext.historical"/></a>
 </td>
-    <td><a href="<%=HTMLUtils.escapeHtmlValues(domainS.getUrl())%>">
+    <td><a href="<%=HTMLUtils.escapeHtmlValues(domainS.getwaybackurl())%>">
        wayback</a>
     </td>
 
