@@ -14,6 +14,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ListIterator;
 
 import org.apache.solr.client.solrj.SolrClient;
@@ -35,7 +37,7 @@ public class ArchiveQueryService {
 
     DateTimeFormatter formatter=  DateTimeFormatter.ISO_INSTANT;
 
-    public ResponseWrapper getUrls(String input,String dateFromRaw,String dateToRaw) {
+    public ResponseWrapper getUrls(String input,String dateFromRaw,String dateToRaw,String searchType) {
         //DATE FORMATS ISO_INSTANT
         ZonedDateTime dateFrom;
         ZonedDateTime dateTo;
@@ -63,14 +65,14 @@ public class ArchiveQueryService {
         solrQuery = new SolrQuery();
 
         String query;
-        if (input.contains("http") || input.contains("www")){
+        if (input.contains("http") || input.contains("www") || searchType.equals("NAME")){
             query = getUrlQuery(input, dateRange);
         }else{
             query = getQuery(input,dateRange);
             if (!query.equals("")) {
-                solrQuery.setHighlight(true).setHighlightSnippets(1).setHighlightSimplePost("</mark></strong>").setHighlightSimplePre("<strong><mark>"); //set other params as needed
-                solrQuery.setParam("hl.fl", "content_t");
-                solrQuery.setParam("hl.requireFieldMatch", "true");
+                //solrQuery.setHighlight(true).setHighlightSnippets(1).setHighlightSimplePost("</mark></strong>").setHighlightSimplePre("<strong><mark>"); //set other params as needed
+                //solrQuery.setParam("hl.fl", "content_t");
+                //solrQuery.setParam("hl.requireFieldMatch", "true");
             }
         }
 
@@ -92,7 +94,7 @@ public class ArchiveQueryService {
         ResponseWrapper responseWrapper=new ResponseWrapper();
                 
         ListIterator<SolrDocument> iter = rs.listIterator();
-
+        HashSet<String> urlSet=new HashSet<>();
         while (iter.hasNext()) {
             SolrDocument doc = iter.next();
             String url = doc.get("url_s").toString();
@@ -106,7 +108,12 @@ public class ArchiveQueryService {
             } catch (NullPointerException e){
                 content = doc.get("content_t").toString();
             }
-            responseWrapper.add(new ArchiveUrl( url,  date,  title,  content,wayback));
+            ArchiveUrl archiveUrl = new ArchiveUrl(url, date, title, content, wayback);
+            if (urlSet.contains(archiveUrl.getDomain()))
+                continue;
+            else
+                urlSet.add(archiveUrl.getDomain());
+            responseWrapper.add(archiveUrl);
         }
         //Gson gson = new Gson();
         //String APIresponse = gson.toJson(responseWrapper);
@@ -124,7 +131,7 @@ public class ArchiveQueryService {
     }
 
     private static String getUrlQuery(String url, String dateRange) {
-        String query = "url_s:" + url.replace(":", "\\:");
+        String query = "url_s:*" + url.replace(":", "\\:")+"*";
         query += " AND date_dt:"+dateRange;
         return query;
     }

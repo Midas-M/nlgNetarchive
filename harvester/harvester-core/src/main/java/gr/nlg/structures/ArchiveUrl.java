@@ -25,7 +25,8 @@ private String domain;
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        this.domain = uri.getHost();
+        String[] domainParts = uri.getHost().split("\\.");
+        this.domain = domainParts[domainParts.length-2]+"."+domainParts[domainParts.length-1];
         this.waybackurl= wayback+"/*/"+this.domain;
     }
 

@@ -204,7 +204,7 @@ The search-system are now able to search in different fields of the 'domain' tab
   <td>
                    <a href="Definitions-edit-domain.jsp?<%=
                       Constants.DOMAIN_PARAM%>=<%=
-                      HTMLUtils.escapeHtmlValues(encodedDomain)%>target="_blank""><%=
+                      HTMLUtils.escapeHtmlValues(encodedDomain)%>" target="_blank"><%=
                       HTMLUtils.escapeHtmlValues(domainS.getDomain())%>
                     </a>
 
@@ -212,12 +212,12 @@ The search-system are now able to search in different fields of the 'domain' tab
 <%
   if (SiteSection.isDeployed("History")) {
     String historyLink = "/History/Harveststatus-perdomain.jsp?domainName="
-            + HTMLUtils.encode(domainS.getUrl());
+            + HTMLUtils.encode(domainS.getDomain());
 %>
 <td><a href="<%=HTMLUtils.escapeHtmlValues(historyLink)%>">
   <fmt:message key="harvestdefinition.linktext.historical"/></a>
 </td>
-    <td><a href="<%=HTMLUtils.escapeHtmlValues(domainS.getwaybackurl())%>">
+    <td><a href="<%=HTMLUtils.escapeHtmlValues(domainS.getwaybackurl())%>" target="_blank">
        wayback</a>
     </td>
 
@@ -255,7 +255,7 @@ The search-system are now able to search in different fields of the 'domain' tab
                   size="<%=Constants.DOMAIN_NAME_FIELD_SIZE %>" value=""/>
                 </span>
             </td>
-            <td><fmt:message key="may.use.wildcards"/></td>
+
         </tr>
         <tr>
             <!--  add selector for what kind of search to make -->

@@ -357,7 +357,7 @@ public class DomainDefinition {
 
         log.debug("SearchQuery '" + searchQuery + "', searchType: " + searchType);
         ArchiveQueryService service=new ArchiveQueryService();
-        resultSet=service.getUrls(searchQuery,"none","none");
+        resultSet=service.getUrls(searchQuery,"none","none",searchType);
         //resultSet = DomainDAO.getInstance().getDomains(searchQuery, searchType);
         return resultSet;
     }
