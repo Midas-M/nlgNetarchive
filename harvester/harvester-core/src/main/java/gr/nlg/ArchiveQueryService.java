@@ -39,12 +39,17 @@ public class ArchiveQueryService {
 
     public ResponseWrapper getUrls(String input,String dateFromRaw,String dateToRaw,String searchType) {
         //DATE FORMATS ISO_INSTANT
+        if(dateFromRaw.equals("any"))
+            dateFromRaw="none";
+        if(dateToRaw.equals("any"))
+            dateFromRaw="none";
+
         ZonedDateTime dateFrom;
         ZonedDateTime dateTo;
         ZoneId zone= ZoneId.of("UTC");
         //YY-MM-DD
-        if(!dateFromRaw.equals("none")) {
-            LocalDateTime temp = LocalDateTime.of(Integer.valueOf(dateFromRaw.split("-")[0]), Integer.valueOf(dateFromRaw.split("-")[1]), Integer.valueOf(dateFromRaw.split("-")[2]), 0, 0);
+        if(!dateFromRaw.equals("none") ) {
+            LocalDateTime temp = LocalDateTime.of(Integer.valueOf(dateFromRaw.split("-")[2]), Integer.valueOf(dateFromRaw.split("-")[1]), Integer.valueOf(dateFromRaw.split("-")[0]), 0, 0);
             dateFrom=ZonedDateTime.of(temp,zone);
         }
         else {
@@ -52,7 +57,7 @@ public class ArchiveQueryService {
             dateFrom=ZonedDateTime.of(temp,zone);
         }
         if(!dateToRaw.equals("none")) {
-            LocalDateTime temp = LocalDateTime.of(Integer.valueOf(dateToRaw.split("-")[0]), Integer.valueOf(dateToRaw.split("-")[1]), Integer.valueOf(dateToRaw.split("-")[2]), 0, 0);
+            LocalDateTime temp = LocalDateTime.of(Integer.valueOf(dateToRaw.split("-")[2]), Integer.valueOf(dateToRaw.split("-")[1]), Integer.valueOf(dateToRaw.split("-")[0]), 0, 0);
             dateTo=ZonedDateTime.of(temp,zone);
         }
         else {

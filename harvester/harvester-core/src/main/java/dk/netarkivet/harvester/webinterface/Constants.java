@@ -263,6 +263,11 @@ public class Constants {
      */
     public static final String DOMAIN_QUERY_STRING_PARAM = "DOMAIN_QUERY_STRING";
 
+    public static final String DOMAIN_QUERY_DATEFROM_PARAM = "DOMAIN_QUERY_DATEFROM";
+
+    public static final String DOMAIN_QUERY_DATETO_PARAM = "DOMAIN_QUERY_DATETO";
+
+
     public static final String TRAPS_DOMAIN_SEARCH = "crawlertraps";
 
     public static final String NAME_DOMAIN_SEARCH = "name";

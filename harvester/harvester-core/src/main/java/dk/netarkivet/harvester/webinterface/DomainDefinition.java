@@ -343,6 +343,16 @@ public class DomainDefinition {
      * @param searchType The given searchCriteria 
      * @return the set of domain-names matching the given criteria.
      */
+    public static ResponseWrapper getDomains(PageContext context, I18n i18n, String searchQuery, String searchType,String dateFrom,String dateTo) {
+
+        ResponseWrapper resultSet;
+        ArgumentNotValid.checkNotNullOrEmpty(searchQuery, "String searchQuery");
+        ArgumentNotValid.checkNotNullOrEmpty(searchType, "String searchType");
+        ArchiveQueryService service=new ArchiveQueryService();
+        resultSet=service.getUrls(searchQuery,dateFrom,dateTo,searchType);
+        return resultSet;
+    }
+
     public static ResponseWrapper getDomains(PageContext context, I18n i18n, String searchQuery, String searchType) {
         ResponseWrapper resultSet;
         ArgumentNotValid.checkNotNullOrEmpty(searchQuery, "String searchQuery");
