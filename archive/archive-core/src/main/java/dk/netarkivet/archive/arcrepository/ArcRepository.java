@@ -303,11 +303,12 @@ public class ArcRepository implements CleanupIF {
     private synchronized void considerReplyingOnStore(String arcFileName) {
         log.info("Considering reply",arcFileName);
         if (ad.hasReplyInfo(arcFileName)) {
-            if (isStoreCompleted(arcFileName)) {
-                replyOK(arcFileName, ad.removeReplyInfo(arcFileName));
-            } else if (oneReplicaHasFailed(arcFileName) && noReplicaInStateUploadStarted(arcFileName)) {
-                replyNotOK(arcFileName, ad.removeReplyInfo(arcFileName));
-            }
+            replyOK(arcFileName, ad.removeReplyInfo(arcFileName));
+            //if (isStoreCompleted(arcFileName)) {
+            //    replyOK(arcFileName, ad.removeReplyInfo(arcFileName));
+            //} else if (oneReplicaHasFailed(arcFileName) && noReplicaInStateUploadStarted(arcFileName)) {
+            //    replyNotOK(arcFileName, ad.removeReplyInfo(arcFileName));
+            //}
         }
     }
 
