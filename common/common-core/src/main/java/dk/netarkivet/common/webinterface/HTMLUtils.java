@@ -378,7 +378,7 @@ public class HTMLUtils {
         out.print("</table>\n");
         // Add information about the running system
         out.print("<div class='systeminfo'>");
-        out.print("Σύστημα Αρχειοθήτησης Ιστού - Εθνική Βιβλιοθήκη της Ελλάδος");
+        out.print("Εθνικό Σύστημα Αρχειοθέτησης Ελληνικού Ιστού - Εθνική Βιβλιοθήκη της Ελλάδος");
         out.print("</div>");
         // Close the page
         out.print("</body></html>");
