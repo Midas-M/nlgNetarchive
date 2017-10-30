@@ -61,7 +61,7 @@ if name is not sent.
 /><fmt:setBundle basename="<%=Constants.TRANSLATIONS_BUNDLE%>"/><%
     String title = I18N.getString(response.getLocale(),
             "pagetitle.language");
-    HTMLUtils.generateHeader(title, pageContext);
+    HTMLUtils.generateHeaderRedirect(title, pageContext);
 %>
 <h3><fmt:message key="pagetitle.language"/></h3>
 

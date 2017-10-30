@@ -19,11 +19,7 @@
       <artifactId>servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.netarchivesuite</groupId>
-      <artifactId>common-core</artifactId>
-      <version>5.4-SNAPSHOT</version>
-    </dependency>
+
   </dependencies>
 
   <build>

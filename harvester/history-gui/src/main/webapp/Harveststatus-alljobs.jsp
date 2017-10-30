@@ -54,6 +54,47 @@ resubmit - jobID of a job to resubmit.
 
 <fmt:setLocale value="<%=HTMLUtils.getLocale(request)%>" scope="page"/>
 <fmt:setBundle scope="page" basename="<%=dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE%>"/>
+
+<%!
+    private static final I18n I18N = new I18n(
+            dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE);
+%>
+
+<%
+    HTMLUtils.setUTF8(request);
+    try {
+        HarvestStatus.processRequest(pageContext, I18N);
+    } catch (ForwardedToErrorPage e) {
+        return;
+    }
+
+    //After a resubmit, forward to this page
+    if (request.getParameter(Constants.JOB_RESUBMIT_PARAM) != null) {
+        response.sendRedirect("Harveststatus-alljobs.jsp");
+        return;
+    }
+    HTMLUtils.generateHeader(pageContext);
+
+    HarvestStatusQuery query = new HarvestStatusQuery(request);
+    //for this query the harvest name filter is not case sensitive
+    query.setCaseSensitiveHarvestName(false);
+    String backHavestName = query.getHarvestName();
+    if(!backHavestName.isEmpty()) {
+        query.setHarvestName("*" + backHavestName + "*");
+    }
+    //list of information to be shown
+    HarvestStatus results = HarvestStatus.getjobStatusList(query);
+    List<JobStatusInfo> jobStatusList = results.getJobStatusInfo();
+    Set<JobStatus> selectedStatuses = query.getSelectedJobStatusesAsSet();
+    
+    query.setHarvestName( backHavestName );
+    
+    boolean generateResubmitForm = selectedStatuses.isEmpty() 
+        || selectedStatuses.contains(JobStatus.FAILED);
+%>
+
+<jsp:include page="calendar.jsp" flush="true"/>
+
 <script language="javascript" type="text/javascript">
     /**
      * an XMLHttpRequest (or equivalent object for IE) which can be used to send
@@ -118,47 +159,6 @@ resubmit - jobID of a job to resubmit.
     }
 
 </script>
-<%!
-    private static final I18n I18N = new I18n(
-            dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE);
-%>
-
-<%
-    HTMLUtils.setUTF8(request);
-    try {
-        HarvestStatus.processRequest(pageContext, I18N);
-    } catch (ForwardedToErrorPage e) {
-        return;
-    }
-
-    //After a resubmit, forward to this page
-    if (request.getParameter(Constants.JOB_RESUBMIT_PARAM) != null) {
-        response.sendRedirect("Harveststatus-alljobs.jsp");
-        return;
-    }
-    HTMLUtils.generateHeader(pageContext);
-
-    HarvestStatusQuery query = new HarvestStatusQuery(request);
-    //for this query the harvest name filter is not case sensitive
-    query.setCaseSensitiveHarvestName(false);
-    String backHavestName = query.getHarvestName();
-    if(!backHavestName.isEmpty()) {
-        query.setHarvestName("*" + backHavestName + "*");
-    }
-    //list of information to be shown
-    HarvestStatus results = HarvestStatus.getjobStatusList(query);
-    List<JobStatusInfo> jobStatusList = results.getJobStatusInfo();
-    Set<JobStatus> selectedStatuses = query.getSelectedJobStatusesAsSet();
-    
-    query.setHarvestName( backHavestName );
-    
-    boolean generateResubmitForm = selectedStatuses.isEmpty() 
-        || selectedStatuses.contains(JobStatus.FAILED);
-%>
-
-<jsp:include page="calendar.jsp" flush="true"/>
-
-
 <script type="text/javascript">
 
 // Resets the search form to default values.

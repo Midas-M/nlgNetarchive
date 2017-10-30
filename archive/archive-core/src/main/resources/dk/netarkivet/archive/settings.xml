@@ -41,7 +41,7 @@ National Library.
             <!-- The default value amounts to 1907 MBytes. -->
             <minSpaceLeft>2000000000</minSpaceLeft>
             <!-- The default value amounts to a little less than 10 MBytes. -->
-            <minSpaceRequired>10000000</minSpaceRequired>
+            <minSpaceRequired>1000000000</minSpaceRequired>
             <baseFileDir>bitarchive</baseFileDir>
             <!-- The default amounts to one second -->
             <heartbeatFrequency>1000</heartbeatFrequency>
@@ -50,7 +50,7 @@ National Library.
             <!-- The default value amounts to 14 days. -->
             <batchMessageTimeout>1209600000</batchMessageTimeout>
             <!-- The maximum time for handling a GetChecksumMessage. -->
-            <singleChecksumTimeout>600000</singleChecksumTimeout>
+            <singleChecksumTimeout>60000</singleChecksumTimeout>
             <thisCredentials>examplecredentials</thisCredentials>
         </bitarchive>
         <checksum>

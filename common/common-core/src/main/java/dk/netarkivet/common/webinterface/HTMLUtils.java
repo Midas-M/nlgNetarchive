@@ -67,6 +67,16 @@ public class HTMLUtils {
     /** External JavaScript files placeholder. */
     private static String JS_PLACEHOLDER = "JS_TO_INCLUDE";
 
+    private static String WEBPAGE_HEADER_TEMPLATE_TOP_REDIRECT = "<!DOCTYPE html "
+            + "PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \n "
+            + "  \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
+            + "<html xmlns=\"http://www.w3.org/1999/xhtml\"" + " xml:lang=\"en\" lang=\"en\">\n" + "<head>\n"
+            + "<meta content=\"text/html; charset=UTF-8\" " + "http-equiv= \"content-type\" />"
+            + "<meta http-equiv=\"Expires\" content=\"0\"/>\n"
+            + "<meta http-equiv=\"Cache-Control\" content=\"no-cache\"/>\n"
+            + "<meta http-equiv=\"refresh\" content=\"0;url=index.jsp\"/>\n"
+            + "<meta http-equiv=\"Pragma\" content=\"no-cache\"/> \n";
+
     private static String WEBPAGE_HEADER_TEMPLATE_TOP = "<!DOCTYPE html "
             + "PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \n "
             + "  \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
@@ -202,6 +212,46 @@ public class HTMLUtils {
         title = escapeHtmlValues(title);
         log.debug("Loading URL '" + url + "' with title '" + title + "'");
         out.print(WEBPAGE_HEADER_TEMPLATE_TOP);
+
+        String includeJs = "";
+        if (jsToInclude != null && jsToInclude.length > 0) {
+            for (String js : jsToInclude) {
+                includeJs += "<script type=\"text/javascript\" src=\"" + js + "\"></script>\n";
+            }
+        }
+
+        out.print(WEBPAGE_HEADER_TEMPLATE_BOTTOM.replace(TITLE_PLACEHOLDER, title).replace(JS_PLACEHOLDER, includeJs));
+        // Start the two column / one row table which fills the page
+        out.print("<table id =\"main_table\"><tr>\n");
+        // fill in data in the left column
+        generateNavigationTree(out, url, locale);
+        // The right column contains the active form content for this page
+        out.print("<td valign = \"top\" >\n");
+        // Language links
+        generateLanguageLinks(out);
+        log.debug("Loaded URL '" + url + "' with title '" + title + "'");
+    }
+
+
+    /**
+     * Prints the header information for the webpages in the GUI. This includes the navigation menu, and links for
+     * changing the language.
+     *
+     * @param title An internationalised title of the page.
+     * @param context The context of the web page request.
+     * @param jsToInclude path(s) to external .js files to include in header.
+     * @throws IOException if an error occurs during writing to output.
+     */
+    public static void generateHeaderRedirect(String title, PageContext context, String... jsToInclude) throws IOException {
+        ArgumentNotValid.checkNotNull(title, "title");
+        ArgumentNotValid.checkNotNull(context, "context");
+
+        JspWriter out = context.getOut();
+        String url = ((HttpServletRequest) context.getRequest()).getRequestURL().toString();
+        Locale locale = context.getResponse().getLocale();
+        title = escapeHtmlValues(title);
+        log.debug("Loading URL '" + url + "' with title '" + title + "'");
+        out.print(WEBPAGE_HEADER_TEMPLATE_TOP_REDIRECT);
 
         String includeJs = "";
         if (jsToInclude != null && jsToInclude.length > 0) {
