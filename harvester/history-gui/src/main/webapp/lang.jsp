@@ -31,7 +31,7 @@ if name is not sent.
         import="dk.netarkivet.common.Constants,
                 dk.netarkivet.common.utils.I18n,
                 dk.netarkivet.common.webinterface.HTMLUtils"
-        pageEncoding="UTF-8"
+                pageEncoding="UTF-8"
 %><%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"
 %><%!
     private static final I18n I18N = new I18n(

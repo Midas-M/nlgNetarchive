@@ -44,7 +44,7 @@ and reponse.getLocale use this locale.
                  dk.netarkivet.harvester.datamodel.JobDAO,
                  dk.netarkivet.harvester.datamodel.JobStatus,
                  dk.netarkivet.harvester.webinterface.Constants"
-         pageEncoding="UTF-8"
+                 pageEncoding="UTF-8"
 %><%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"
 %><fmt:setLocale value="<%=HTMLUtils.getLocale(request)%>" scope="page"
 /><fmt:setBundle scope="page" basename="<%=dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE%>"/><%!

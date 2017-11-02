@@ -164,7 +164,7 @@ public class HistoryServlet extends HttpServlet implements ResourceManagerAbstra
 
     public void locale_get_set(HttpServletRequest req, HttpServletResponse resp) {
         // Request parameter.
-        String languageStr = req.getParameter("locale");
+        String languageStr = "en";//req.getParameter("locale");
         Language languageObj = null;
         if (languageStr != null) {
             languageObj = environment.laguangeLHM.get(languageStr);
@@ -173,7 +173,7 @@ public class HistoryServlet extends HttpServlet implements ResourceManagerAbstra
                 cookie.setPath("/");
                 //Keep the cookie for a year
                 cookie.setMaxAge(365 * 24 * 60 * 60);
-                resp.addCookie(cookie);
+                //resp.addCookie(cookie);
             }
         }
         // Cookie.

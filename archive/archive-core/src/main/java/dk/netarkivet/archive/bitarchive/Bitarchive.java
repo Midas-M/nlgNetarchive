@@ -246,10 +246,14 @@ public class Bitarchive {
             // the file is uploaded. It also means that we do not need to clean
             // up in the file directory, in case of failure - only the temporary
             // destination needs clean up.
+            log.info("copying file to tempDestination");
             arcfile.copyTo(tempDestination);
+            log.info("done");
             // Note that the move operation is a constant time operation within
             // the same mount
+            log.info("move file to Storage");
             destination = admin.moveToStorage(tempDestination);
+            log.info("done");
         } catch (Throwable e) {
             // destination is known to be null here, so don't worry about it.
             if (tempDestination.exists()) {

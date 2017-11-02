@@ -43,7 +43,9 @@ harvestname (Constants.HARVEST_PARAM): The name of the harvest that will be
                  dk.netarkivet.common.webinterface.SiteSection,
                  dk.netarkivet.harvester.datamodel.HarvestDefinitionDAO,
                  dk.netarkivet.harvester.webinterface.Constants"
-%><%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+                 pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <fmt:setLocale value="<%=HTMLUtils.getLocale(request)%>" scope="page"
 /><fmt:setBundle scope="page"
        basename="<%=dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE%>"/>

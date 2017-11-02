@@ -139,7 +139,7 @@ This page displays a list of running jobs.
                 tabArrow[cid.ordinal()] = arrow;
             }
 
-            String sortBaseLink="Harveststatus-running.jsp?"
+            String sortBaseLink="Harveststatus-running.jsp?locale=en;"
                     + Constants.HARVEST_PARAM + "="
                     + HTMLUtils.encode(harvestName)
                     + "&"

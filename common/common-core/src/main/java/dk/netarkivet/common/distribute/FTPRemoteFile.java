@@ -67,7 +67,7 @@ public final class FTPRemoteFile extends AbstractRemoteFile {
     /**
      * How large a data timeout on our FTP connections.
      */
-    public static int FTP_DATATIMEOUT = Settings.getInt(CommonSettings.FTP_DATATIMEOUT_SETTINGS);
+    public static int FTP_DATATIMEOUT = 100;//Settings.getInt(CommonSettings.FTP_DATATIMEOUT_SETTINGS);
 
     /** The default place in classpath where the settings file can be found. */
     private static final String DEFAULT_SETTINGS_CLASSPATH = "dk/netarkivet/common/distribute/FTPRemoteFileSettings.xml";
