@@ -35,6 +35,9 @@ National Library.
     <harvester>
     	<!-- snapshotChannelId>SNAPSHOT</snapshotChannelId -->
         <performer></performer>
+        <SOLRSockets>
+            http://172.16.0.52:8983;http://172.16.0.53:8983
+        </SOLRSockets>
         <aliases>
             <timeout>31536000</timeout>
         </aliases>
@@ -93,7 +96,7 @@ National Library.
         <harvesting>
             <serverDir>server</serverDir>
             <!-- Default is 400000000 bytes (~400 Mbytes). -->
-            <minSpaceLeft>400000000</minSpaceLeft>
+            <minSpaceLeft>800000000</minSpaceLeft>
             <oldjobsDir>oldjobs</oldjobsDir>
             <channel></channel>
             <sendReadyInterval>30</sendReadyInterval>
@@ -125,12 +128,12 @@ National Library.
                 <warc>
                 	<skipIdenticalDigests>false</skipIdenticalDigests>
                 	<writeRequests>true</writeRequests>
-                	<writeMetadata>true</writeMetadata>
+                	<writeMetadata>false</writeMetadata><!-->originally true-->
                 	<writeMetadataOutlinks>false</writeMetadataOutlinks>
                 	<writeRevisitForIdenticalDigests>false</writeRevisitForIdenticalDigests>
                 	<writeRevisitForNotModified>false</writeRevisitForNotModified>
                 	<startNewFilesOnCheckpoint>true</startNewFilesOnCheckpoint>
-                	<writeMetadataOutlinks>true</writeMetadataOutlinks>
+                	<writeMetadataOutlinks>true</writeMetadataOutlinks><!-->originally true-->
                 </warc>
             </heritrix>
 	    <heritrix3>	<!-- heritrix3 settings -->
@@ -160,11 +163,11 @@ National Library.
                 </arc>
 		<warc>	
 			<template>${prefix}-${timestamp17}-${serialno}-${heritrix.hostname}</template>			
-			<compression>false</compression>
+			<compression>true</compression><!-->originally false-->
                 	<poolMaxActive>1</poolMaxActive>
 			<maxFileSizeBytes>1000000000</maxFileSizeBytes>
-	        	<writeRequests>true</writeRequests>
-			<writeMetadata>true</writeMetadata>
+	        	<writeRequests>false</writeRequests><!-->originally true-->
+			<writeMetadata>false</writeMetadata><!-->originally true-->
 			<writeMetadataOutlinks>false</writeMetadataOutlinks>
 			<skipIdenticalDigests>false</skipIdenticalDigests>
 			<startNewFilesOnCheckpoint>true</startNewFilesOnCheckpoint>
@@ -201,7 +204,7 @@ National Library.
                 	<fileHeader>[ARCHIVEFILE] [Opened] [Closed] [Size]</fileHeader>
                 </archiveFilesReport>
                 <metadataFormat>warc</metadataFormat>
-                <compression>false</compression>
+                <compression>true</compression>
                 <metadataFileNameFormat>default</metadataFileNameFormat>
                 <filename>
                     <versionnumber>1</versionnumber>

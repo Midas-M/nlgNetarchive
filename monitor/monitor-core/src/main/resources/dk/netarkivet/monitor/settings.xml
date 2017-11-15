@@ -34,7 +34,7 @@ National Library.
 <settings>
     <monitor>
         <SOLRSockets>
-            http://172.16.0.52:8983;http://172.16.0.53:8985
+            http://172.16.0.52:8983;http://172.16.0.53:8983
         </SOLRSockets>
         <WAYBACKSockets>
             http://172.16.0.52:8080;http://172.16.0.53:8080

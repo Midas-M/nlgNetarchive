@@ -41,7 +41,10 @@ public class HarvesterSettings {
     static {
         Settings.addDefaultClasspathSettings(DEFAULT_SETTINGS_CLASSPATH);
     }
-
+    /**
+     * SOLR NODES
+     */
+    public static String SOLRSockets = "settings.harvester.SOLRSockets";
     // NOTE: The constants defining setting names below are left non-final on
     // purpose! Otherwise, the static initialiser that loads default values
     // will not run.

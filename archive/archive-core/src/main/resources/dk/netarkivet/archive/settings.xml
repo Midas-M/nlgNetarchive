@@ -35,7 +35,7 @@ National Library.
     <archive>
         <arcrepository>
             <baseDir>.</baseDir>
-            <uploadRetries>1</uploadRetries>
+            <uploadRetries>2</uploadRetries>
         </arcrepository>
         <bitarchive>
             <!-- The default value amounts to 1907 MBytes. -->

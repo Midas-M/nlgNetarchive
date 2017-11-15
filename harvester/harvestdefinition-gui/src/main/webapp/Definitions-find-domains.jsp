@@ -86,8 +86,24 @@ The search-system are now able to search in different fields of the 'domain' tab
             return;
         } else {
             // Include navigate.js
-            HTMLUtils.generateHeader(pageContext, "navigateWithTwoParams.js");
-%><h3 class="page_heading">
+            //HTMLUtils.generateHeader(pageContext, "navigateWithTwoParams.js");
+            // Include JS files for the calendar
+
+            String lang = HTMLUtils.getLocale(request);
+            if (lang.length() >= 2) {
+                lang = lang.substring(0, 2);
+            }
+
+
+            HTMLUtils.generateHeader(
+                    pageContext,
+                    "navigateWithTwoParams.js",
+                    "./jscalendar/calendar.js",
+                    "./jscalendar/lang/calendar-" + lang + ".js",
+                    "./jscalendar/calendar-setup.js");%>
+
+
+<h3 class="page_heading">
     <fmt:message key="searching.for.0.gave.1.hits">
         <fmt:param value="<%=searchQuery%>"/>
         <fmt:param value="<%=matchingDomains.size()%>"/>
@@ -245,10 +261,21 @@ The search-system are now able to search in different fields of the 'domain' tab
         }
 
     }
+    String lang = HTMLUtils.getLocale(request);
+    if (lang.length() >= 2) {
+        lang = lang.substring(0, 2);
+    }
 
     //Note: This point is only reached if no name was sent to the JSP-page
-    HTMLUtils.generateHeader(pageContext);
+    HTMLUtils.generateHeader(
+            pageContext,
+            "./jscalendar/calendar.js",
+            "./jscalendar/lang/calendar-" + lang + ".js",
+            "./jscalendar/calendar-setup.js");
 %>
+
+<jsp:include page="calendar-scripts.jsp"/>
+
 <h3 class="page_heading"><fmt:message key="pagetitle;find.domains"/></h3>
 
 
@@ -292,13 +319,26 @@ The search-system are now able to search in different fields of the 'domain' tab
         </tr>
         <tr>
             <td> Από:</td>
-            <td><input name="<%=Constants.DOMAIN_QUERY_DATEFROM_PARAM%>" value="25-01-1989"/></td>
+            <td>
+                <!--<input name="<%=Constants.DOMAIN_QUERY_DATEFROM_PARAM%>" value="25-01-1989"/>-->
+                <input name="<%=Constants.DOMAIN_QUERY_DATEFROM_PARAM%>" size="25"
+                       id="<%=Constants.DOMAIN_QUERY_DATEFROM_PARAM%>"/>
+                (<fmt:message key="harvestdefinition.schedule.edit.timeformatDescription"/>)
+                <script type="text/javascript">
+                    setupNextdateCalendarInput("<%=Constants.DOMAIN_QUERY_DATEFROM_PARAM%>");
+                </script>
+            </td>
         </tr>
         <tr>
             <td>Έως:</td>
 
             <td>
-                <input name="<%=Constants.DOMAIN_QUERY_DATETO_PARAM%>" value="any"/>
+                <input name="<%=Constants.NEXTDATE_PARAM%>" size="25"
+                       id="<%=Constants.NEXTDATE_PARAM%>"/>
+                (<fmt:message key="harvestdefinition.schedule.edit.timeformatDescription"/>)
+                <script type="text/javascript">
+                    setupNextdateCalendar();
+                </script>
             </td>
 
         </tr>

@@ -25,7 +25,9 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
-
+import dk.netarkivet.common.CommonSettings;
+import dk.netarkivet.common.utils.Settings;
+import dk.netarkivet.harvester.HarvesterSettings;
 import gr.nlg.structures.ArchiveUrl;
 import gr.nlg.structures.ResponseWrapper;
 
@@ -39,25 +41,34 @@ public class ArchiveQueryService {
 
     public ResponseWrapper getUrls(String input,String dateFromRaw,String dateToRaw,String searchType) {
         //DATE FORMATS ISO_INSTANT
-        if(dateFromRaw.equals("any"))
-            dateFromRaw="none";
-        if(dateToRaw.equals("any"))
-            dateFromRaw="none";
 
         ZonedDateTime dateFrom;
         ZonedDateTime dateTo;
-        ZoneId zone= ZoneId.of("UTC");
+        ZoneId zone= ZoneId.of("UTC+2");
         //YY-MM-DD
-        if(!dateFromRaw.equals("none") ) {
-            LocalDateTime temp = LocalDateTime.of(Integer.valueOf(dateFromRaw.split("-")[2]), Integer.valueOf(dateFromRaw.split("-")[1]), Integer.valueOf(dateFromRaw.split("-")[0]), 0, 0);
+        if(!dateFromRaw.equals("") ) {
+            String[] parts=dateFromRaw.split(" ");
+            Integer YY = Integer.valueOf(parts[1]);
+            Integer MM = Integer.valueOf(parts[0].split("/")[1]);
+            Integer DD = Integer.valueOf(parts[0].split("/")[0]);
+            Integer HH = Integer.valueOf(parts[2].split(":")[0]);
+            Integer MN = Integer.valueOf(parts[2].split(":")[1]);
+
+            LocalDateTime temp = LocalDateTime.of(YY, MM, DD, HH, MN);
             dateFrom=ZonedDateTime.of(temp,zone);
         }
         else {
             LocalDateTime temp = LocalDateTime.of(1999, Month.JANUARY, 1, 0, 0);
             dateFrom=ZonedDateTime.of(temp,zone);
         }
-        if(!dateToRaw.equals("none")) {
-            LocalDateTime temp = LocalDateTime.of(Integer.valueOf(dateToRaw.split("-")[2]), Integer.valueOf(dateToRaw.split("-")[1]), Integer.valueOf(dateToRaw.split("-")[0]), 0, 0);
+        if(!dateToRaw.equals("")) {
+            String[] parts=dateToRaw.split(" ");
+            Integer YY = Integer.valueOf(parts[1]);
+            Integer MM = Integer.valueOf(parts[0].split("/")[1]);
+            Integer DD = Integer.valueOf(parts[0].split("/")[0]);
+            Integer HH = Integer.valueOf(parts[2].split(":")[0]);
+            Integer MN = Integer.valueOf(parts[2].split(":")[1]);
+            LocalDateTime temp = LocalDateTime.of(YY, MM, DD, HH, MN);
             dateTo=ZonedDateTime.of(temp,zone);
         }
         else {
@@ -84,7 +95,8 @@ public class ArchiveQueryService {
         solrQuery.setQuery(query);
 
         solrQuery.setRows(150);
-        String urlString = "http://185.78.220.36:8983/solr/nlg_archive";
+        String socket= Settings.get(HarvesterSettings.SOLRSockets).split(";")[0];
+        String urlString = socket+"/solr/nlg_archive";
         SolrClient server = new HttpSolrClient.Builder(urlString).build();
         QueryResponse response = null;
         try {

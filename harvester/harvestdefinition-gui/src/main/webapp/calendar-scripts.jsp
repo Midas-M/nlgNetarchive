@@ -134,6 +134,24 @@ This page contains javascript supporting calendar handling.
     }
 
     /**
+     * Attach the calendar to the x field on the
+     * page
+     */
+    function setupNextdateCalendarInput(x){
+        Calendar.setup({
+            inputField     :    x,
+            // id of the input field
+            ifFormat       :    "<fmt:message key="jscalendar.timeformat"/>",
+            // format of the input field
+            showsTime      :    true,          // will display a time selector
+            singleClick    :    true,          // single-click mode
+            step           :    1,             // show all years in drop-down
+            // boxes (instead of every other year as default)
+            firstDay       :    1              // first day is monday
+        });
+    }
+
+    /**
      * Attach the calendar to a extended Field with 
      */
      function setupExtendedFieldCalendar(fieldname, jsformat){
