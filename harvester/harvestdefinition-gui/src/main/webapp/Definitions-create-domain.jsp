@@ -66,9 +66,7 @@ Parameters:
            value="<fmt:message key="harvestdefinition.domains.domainlist"/>"/>
     <input type="submit" value="<fmt:message key="ingest"/>" />
 </form>
-<p>
-    <a target="_blank" href="http://webarc1-new.nlg.sdmz:8000/nlg_seeds/list/">Manage CSV Seed data file</a>
-</p>
+
 <%
     HTMLUtils.generateFooter(out);
 %>

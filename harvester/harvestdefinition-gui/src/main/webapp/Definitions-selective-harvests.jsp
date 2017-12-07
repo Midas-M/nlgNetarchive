@@ -202,6 +202,10 @@ inactive or vice-versa.
 <a href="Definitions-edit-selective-harvest.jsp?createnew=1">
     <fmt:message key="create.new.selective.harvestdefinition"/>
 </a>
+
+<p>
+    <a target="_blank" href="http://webarc1-new.nlg.sdmz:8000/nlg_seeds/list/">Manage CSV Seed data file</a>
+</p>
 <%
     HTMLUtils.generateFooter(out);
 %>

@@ -433,5 +433,6 @@ if (hdd != null) {
       <fmt:message key="save.harvest.definition.first"/>
     <%
     }
+
     HTMLUtils.generateFooter(out);
 %>

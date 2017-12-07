@@ -347,6 +347,11 @@ The search-system are now able to search in different fields of the 'domain' tab
         </tr>
     </table>
 </form>
+
+<p>
+    <a target="_blank" href="http://webarc1-new.nlg.sdmz:8000/nlg_seeds/list/">Update SOLR Metadata</a>
+</p>
+
 <%
     HTMLUtils.generateFooter(out);
 %>
