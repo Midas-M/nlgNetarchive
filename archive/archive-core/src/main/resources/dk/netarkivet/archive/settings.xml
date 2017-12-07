@@ -44,7 +44,7 @@ National Library.
             <minSpaceRequired>1000000000</minSpaceRequired>
             <baseFileDir>bitarchive</baseFileDir>
             <!-- The default amounts to one second -->
-            <heartbeatFrequency>1000</heartbeatFrequency>
+            <heartbeatFrequency>10000</heartbeatFrequency>
             <!-- The default amounts to one minute -->
             <acceptableHeartbeatDelay>60000</acceptableHeartbeatDelay>
             <!-- The default value amounts to 14 days. -->

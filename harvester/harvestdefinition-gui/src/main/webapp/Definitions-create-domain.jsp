@@ -36,6 +36,7 @@ Parameters:
                  dk.netarkivet.harvester.webinterface.Constants,
                  dk.netarkivet.harvester.webinterface.DomainDefinition"
           pageEncoding="UTF-8"%>
+<%@ page import="dk.netarkivet.common.utils.Settings" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <fmt:setLocale value="<%=HTMLUtils.getLocale(request)%>" scope="page"/>
 <fmt:setBundle scope="page" basename="<%=dk.netarkivet.harvester.Constants.TRANSLATIONS_BUNDLE%>"/>
@@ -65,7 +66,9 @@ Parameters:
            value="<fmt:message key="harvestdefinition.domains.domainlist"/>"/>
     <input type="submit" value="<fmt:message key="ingest"/>" />
 </form>
-
+<p>
+    <a target="_blank" href="http://webarc1-new.nlg.sdmz:8000/nlg_seeds/list/">Manage CSV Seed data file</a>
+</p>
 <%
     HTMLUtils.generateFooter(out);
 %>

@@ -13,19 +13,18 @@ public class ArchiveUrl {
     private String content;
 private String waybackurl;
 private String domain;
-    public ArchiveUrl(String url, String date, String title, String content,String wayback) {
+
+    public ArchiveUrl(String url, String date, String title,String wayback) throws URISyntaxException {
         this.url = url;
 
         this.date = date;
         this.title = title;
-        this.content = content;
         URI uri = null;
-        try {
-            uri = new URI(url);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        String[] domainParts = uri.getHost().split("\\.");
+        url=url.substring(1);
+        url=url.substring(0,url.length()-1);
+        uri = new URI(url);
+        String host = uri.getHost();
+        String[] domainParts = host.split("\\.");
         this.domain = domainParts[domainParts.length-2]+"."+domainParts[domainParts.length-1];
         this.waybackurl= wayback+"/*/"+this.domain;
     }

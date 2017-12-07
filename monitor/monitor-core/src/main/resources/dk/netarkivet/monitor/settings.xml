@@ -34,10 +34,10 @@ National Library.
 <settings>
     <monitor>
         <SOLRSockets>
-            http://172.16.0.52:8983;http://172.16.0.53:8983
+            http://webarc1-new.nlg.sdmz:8983;http://webarc2-new.nlg.sdmz:8983
         </SOLRSockets>
         <WAYBACKSockets>
-            http://172.16.0.52:8080;http://172.16.0.53:8080
+            http://webarc1-new.nlg.sdmz:8080;http://webarc2-new.nlg.sdmz:8080
         </WAYBACKSockets>
         <WAYBACKCollection>
             nlg_archive

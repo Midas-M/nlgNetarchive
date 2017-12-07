@@ -333,11 +333,11 @@ The search-system are now able to search in different fields of the 'domain' tab
             <td>Έως:</td>
 
             <td>
-                <input name="<%=Constants.NEXTDATE_PARAM%>" size="25"
-                       id="<%=Constants.NEXTDATE_PARAM%>"/>
+                <input name="<%=Constants.DOMAIN_QUERY_DATETO_PARAM%>" size="25"
+                       id="<%=Constants.DOMAIN_QUERY_DATETO_PARAM%>"/>
                 (<fmt:message key="harvestdefinition.schedule.edit.timeformatDescription"/>)
                 <script type="text/javascript">
-                    setupNextdateCalendar();
+                    setupNextdateCalendarInput("<%=Constants.DOMAIN_QUERY_DATETO_PARAM%>");
                 </script>
             </td>
 
