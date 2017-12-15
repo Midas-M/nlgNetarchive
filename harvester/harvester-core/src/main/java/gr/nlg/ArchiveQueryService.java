@@ -86,7 +86,11 @@ public class ArchiveQueryService {
         String query;
         if (input.contains("http") || input.contains("www") || searchType.equals("NAME")){
             query = getUrlQuery(input, dateRange);
-        }else{
+        }else if(searchType.equals("CRAWLERTRAPS")){
+            query = getQueryByCategory(input,dateRange);
+        }
+
+        else{
             query = getQuery(input,dateRange);
 
         }
@@ -140,6 +144,18 @@ public class ArchiveQueryService {
         //Gson gson = new Gson();
         //String APIresponse = gson.toJson(responseWrapper);
         return responseWrapper;
+    }
+
+    private String getQueryByCategory(String keywords, String dateRange) {
+        String query = "";
+        keywords.replaceAll(","," ");
+        String query_0 = queryBuilder(keywords, "category_t");
+
+        String query_1 = queryBuilder(keywords, "subcategory_t");
+        String query_2 = queryBuilder(keywords, "subcategory_t2");
+        query = query_0 + " OR (" + query_1+")"+ " OR (" + query_2+")"+" AND date_dt:"+dateRange;
+        return query;
+
     }
 
     private static String getQuery(String keywords,String dateRange) {

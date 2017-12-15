@@ -35,7 +35,6 @@ public enum DomainSearchType {
     NAME,
     /** search the comments associated with a domain. */
     COMMENTS;
-
     /**
      * Helper method that tries to convert a string to a DomainSearchType.
      *
@@ -65,6 +64,7 @@ public enum DomainSearchType {
             return "domain.search.crawlertraps";
         case COMMENTS:
             return "domain.search.comments";
+
         default:
             throw new ArgumentNotValid("Invalid Domain Search Type '" + this + "'");
         }

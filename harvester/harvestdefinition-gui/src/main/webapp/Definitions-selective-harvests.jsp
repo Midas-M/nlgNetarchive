@@ -204,7 +204,7 @@ inactive or vice-versa.
 </a>
 
 <p>
-    <a target="_blank" href="http://webarc1-new.nlg.sdmz:8000/nlg_seeds/list/">Manage CSV Seed data file</a>
+    <a target="_blank" href="http://webarc1-new.nlg.sdmz:8000/nlg_seeds/list/"><fmt:message key="edit.harvest.csvmanager"/></a>
 </p>
 <%
     HTMLUtils.generateFooter(out);
