@@ -97,7 +97,7 @@ public class ArchiveQueryService {
 
         solrQuery.setQuery(query);
 
-        solrQuery.setRows(150);
+        solrQuery.setRows(100);
         String socket= Settings.get(HarvesterSettings.SOLRSockets).split(";")[0];
         String urlString = socket+"/solr/nlg_archive";
         SolrClient server = new HttpSolrClient.Builder(urlString).build();

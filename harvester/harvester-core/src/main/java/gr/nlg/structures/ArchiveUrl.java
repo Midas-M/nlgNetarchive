@@ -2,11 +2,16 @@ package gr.nlg.structures;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by midas on 2/15/2017.
  */
 public class ArchiveUrl {
+    public HashSet<String > topLevelDomains=new HashSet<String>(Arrays.asList("blogspot.gr", "gov.gr","com.gr","net.gr","blogspot.com"));
     private String url;
     private String date;
     private String title;
@@ -25,7 +30,10 @@ private String domain;
         uri = new URI(url);
         String host = uri.getHost();
         String[] domainParts = host.split("\\.");
+
         this.domain = domainParts[domainParts.length-2]+"."+domainParts[domainParts.length-1];
+        if(topLevelDomains.contains(this.domain))
+            this.domain = domainParts[domainParts.length-3]+"."+domainParts[domainParts.length-2]+"."+domainParts[domainParts.length-1];
         this.waybackurl= wayback+"/*/"+this.domain;
     }
 

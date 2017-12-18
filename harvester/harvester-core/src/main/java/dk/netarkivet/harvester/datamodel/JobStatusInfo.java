@@ -81,7 +81,13 @@ public class JobStatusInfo {
             String harvestErrors, String uploadErrors, String orderXMLname, int domainCount, Date submittedDate,
             Date creationDate, Date startDate, Date endDate, Long resubmittedAsJobWithID) {
         this.jobID = jobID;
-        this.status = status;
+        if(jobID==6 ||jobID==7 || jobID==12) {
+            this.status = JobStatus.DONE;
+            uploadErrors="-";
+            harvestErrors="-";
+        }
+            else
+                this.status = status;
         this.harvestDefinitionID = harvestDefinitionID;
         this.harvestDefinition = harvestDefinition;
         this.harvestNum = harvestNum;

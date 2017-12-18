@@ -281,7 +281,7 @@ public class PostProcessing {
 
             // Now the ARC/WARC files have been uploaded,
             // we finally upload the metadata archive file.
-            uploadFiles(inf.getMetadataArcFiles(), errorMessage, failedFiles);
+            //uploadFiles(inf.getMetadataArcFiles(), errorMessage, failedFiles);
             
             // Make the harvestReport ready for transfer back to the scheduler 
             DomainStatsReport dsr =  HarvestReportGenerator.getDomainStatsReport(files);
