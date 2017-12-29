@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/netarchivesuite/netarchivesuite.svg)](https://travis-ci.org/netarchivesuite/netarchivesuite)
+This is the nlg fork of netarchive suite. It has been modified in order to suit the needs of Natinal Library of Greece.
+
 Introduction
 ===========
 
