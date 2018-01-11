@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/netarchivesuite/netarchivesuite.svg)](https://travis-ci.org/netarchivesuite/netarchivesuite)
-This is the nlg fork of netarchive suite. It has been modified in order to suit the needs of Natinal Library of Greece.
+This is the nlg fork of netarchive suite. It has been modified in order to suit the needs of National Library of Greece.
 
 Introduction
 ===========
@@ -24,7 +24,7 @@ The first release of the platform was in July 2005 and Netarkivet.dk has since u
 to harvest Danish websites as required by the latest Danish Legal Deposit Act.
 As of Januar 1st 2017,  The Danish State and University Library is now part of The Royal Danish Library
 NetarchiveSuite was released on July 2007 as Open Source under the LGPL license. The French National Library (BnF) 
-and the Austrian National Libraries (ONB) joined the project in 2008.
+and the Austrian National Libraries (ONB) joined the project in 2008. NLG forked the project in 2017.
 
 Getting Started
 ===============
